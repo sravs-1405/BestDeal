@@ -55,4 +55,13 @@ app.listen(PORT, () => {
   console.log(`🇮🇳 Currency:  INR | Country: India`);
   console.log(`🤖 ML Models: Enabled`);
   console.log('='.repeat(60) + '\n');
+  const path = require('path');
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+
+// Catch-all route - serve React app for any unknown route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/dist', 'index.html'));
+});
 });
