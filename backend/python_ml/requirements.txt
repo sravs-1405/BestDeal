@@ -1,5 +1,4 @@
 xgboost==2.0.0
 numpy==2.3.2
-numpy==2.3.2
 scikit-learn==1.7.2
-pandas==2.2.2
+pandas==3.0.1
