@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');  // ← moved to top
 require('dotenv').config();
 
 const searchRoutes = require('./routes/searchRoutes');
@@ -7,7 +8,7 @@ const searchRoutes = require('./routes/searchRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ CORS - explicitly allow all localhost ports
+// ✅ CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -31,10 +32,18 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', version: '1.0', currency: 'INR', mlEnabled: true, timestamp: new Date().toISOString() });
 });
 
-// Routes
+// API Routes
 app.use('/api', searchRoutes);
 
-// 404
+// ✅ Serve Frontend - OUTSIDE app.listen
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+
+// ✅ Catch-all - serve React for any non-API route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/dist', 'index.html'));
+});
+
+// 404 handler (optional, catch-all above handles it)
 app.use((req, res) => {
   res.status(404).json({ success: false, error: `Route not found: ${req.method} ${req.url}` });
 });
@@ -55,13 +64,4 @@ app.listen(PORT, () => {
   console.log(`🇮🇳 Currency:  INR | Country: India`);
   console.log(`🤖 ML Models: Enabled`);
   console.log('='.repeat(60) + '\n');
-  const path = require('path');
-
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
-
-// Catch-all route - serve React app for any unknown route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../frontend/dist', 'index.html'));
-});
 });
