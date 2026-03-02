@@ -58,9 +58,9 @@ app.listen(PORT, () => {
   console.log('\n' + '='.repeat(60));
   console.log('🚀 BestDeal Backend Server');
   console.log('='.repeat(60));
-  console.log(`📍 Server:    http://localhost:${PORT}`);
-  console.log(`🔍 Search:    http://localhost:${PORT}/api/search?q=laptop`);
-  console.log(`❤️  Health:    http://localhost:${PORT}/api/health`);
+  console.log(`📍 Server:    ${import.meta.env.VITE_API_URL}
+  console.log(`🔍 Search:    ${import.meta.env.VITE_API_URL}
+  console.log(`❤️  Health:    ${import.meta.env.VITE_API_URL}
   console.log(`🇮🇳 Currency:  INR | Country: India`);
   console.log(`🤖 ML Models: Enabled`);
   console.log('='.repeat(60) + '\n');
