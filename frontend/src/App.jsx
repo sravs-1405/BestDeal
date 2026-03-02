@@ -1154,7 +1154,7 @@ export default function App() {
     setLoading(true); setError(null); setSearched(true); setResults([]);
     setLastQuery(q.trim());
     try {
-      const res = await axios.get("http://localhost:5000/api/search", {
+      const res = await axios.get("${import.meta.env.VITE_API_URL}", {
         params: { q: q.trim() }
       });
       setResults(res.data.products || res.data || []);
