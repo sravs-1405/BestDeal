@@ -34,7 +34,8 @@ app.use((req, res, next) => {
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'healthy', version: '2.0', currency: 'INR', database: 'sqlite', demoMode: process.env.DEMO_MODE === 'true', timestamp: new Date().toISOString() });
+ const k = require('./config/config').SERPAPI_KEY || '';
+res.json({ status: 'healthy', version: '2.0', currency: 'INR', database: 'sqlite', demoMode: process.env.DEMO_MODE === 'true', serpapiKey: { set: k.length > 0, length: k.length, lastFour: k.slice(-4) }, timestamp: new Date().toISOString() });
 });
 
 // API Routes
