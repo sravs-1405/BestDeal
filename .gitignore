@@ -1,0 +1,10 @@
+**/node_modules/
+**/.venv/
+**/.env
+*.zip
+backend/data/
+backend/python_ml/__pycache__/
+backend/python_ml/tests/__pycache__/
+backend/python_ml/ranker.json
+frontend/dist/
+**/.tmp-local-visual/

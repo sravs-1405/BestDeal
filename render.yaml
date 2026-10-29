@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: bestdeal-public
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DEMO_MODE
+        value: "false"
+      - key: CACHE_TTL_HOURS
+        value: "12"
+      - key: PYTHON_PATH
+        value: python3
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SERPAPI_KEY
+        sync: false

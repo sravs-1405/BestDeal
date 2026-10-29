@@ -1,0 +1,9 @@
+.git
+**/node_modules/
+**/.venv/
+**/.env
+**/data/
+**/__pycache__/
+**/.tmp-local-visual/
+**/dist/
+*.zip
