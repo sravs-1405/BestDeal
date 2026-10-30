@@ -311,3 +311,8 @@ thead th { color:var(--rose-dk); background:#fff6f8; }
 .focus-card-wrap { z-index:1; }
 .focus-backdrop.closing .focus-emojis { opacity:0; transition:opacity .2s; }
 @media (prefers-reduced-motion:reduce) { .focus-emojis { display:none; } }
+
+/* Product popup buttons: let long labels wrap instead of being cut off */
+.sheetactions { flex-wrap:wrap; }
+.sheetactions>* { flex:1 1 180px; min-width:0; }
+.sheetactions .s-btn, .sheetactions .soft-button { white-space:normal; text-align:center; line-height:1.3; padding:10px 16px; min-height:46px; overflow:visible; }
